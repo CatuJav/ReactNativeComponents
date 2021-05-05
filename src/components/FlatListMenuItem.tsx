@@ -2,15 +2,20 @@ import React from 'react'
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { MenuItem } from '../interfaces/appInterface';
 import Icon from 'react-native-vector-icons/Ionicons';
+import { useNavigation } from '@react-navigation/core';
 
 
 interface Props{
    menuItem:MenuItem 
 }
 export const FlatLisMenutItem = ({menuItem}:Props) => {
+    const navigation=useNavigation();
     return (
         <TouchableOpacity
             activeOpacity={0.5}
+            onPress={()=>{
+                navigation.navigate(menuItem.component)
+            }}
         >
             <View style={styles.container}>
             <Icon name={menuItem.icon} color='green' size={23}/>

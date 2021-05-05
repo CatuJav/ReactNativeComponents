@@ -18,43 +18,9 @@ const menuItems:MenuItem[]=[
     {
         name:'Animation 102',
         icon:'albums-outline',
-        component:'Animation101Screen'
+        component:'Animation102Screen'
     },
-    {
-        name:'Animation 03',
-        icon:'cube-outline',
-        component:'Animation101Screen'
-    },
-    {
-        name:'Animation 04',
-        icon:'cube-outline',
-        component:'Animation101Screen'
-    },
-    {
-        name:'Animation 05',
-        icon:'cube-outline',
-        component:'Animation101Screen'
-    },
-    {
-        name:'Animation 06',
-        icon:'cube-outline',
-        component:'Animation101Screen'
-    },
-    {
-        name:'Animation 07',
-        icon:'cube-outline',
-        component:'Animation101Screen'
-    },
-    {
-        name:'Animation 08',
-        icon:'cube-outline',
-        component:'Animation101Screen'
-    },
-    {
-        name:'Animation 09',
-        icon:'cube-outline',
-        component:'Animation101Screen'
-    },
+    
 ]
 export const HomeScreen = () => {
 
