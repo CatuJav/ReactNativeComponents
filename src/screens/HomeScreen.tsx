@@ -11,13 +11,13 @@ import { FlatLisMenutItem } from '../components/FlatListMenuItem';
 
 const menuItems:MenuItem[]=[
     {
-        name:'Animation 01',
+        name:'Animation 101',
         icon:'cube-outline',
         component:'Animation101Screen'
     },
     {
-        name:'Animation 02',
-        icon:'cube-outline',
+        name:'Animation 102',
+        icon:'albums-outline',
         component:'Animation101Screen'
     },
     {

@@ -15,7 +15,7 @@ export const FlatLisMenutItem = ({menuItem}:Props) => {
             <View style={styles.container}>
             <Icon name={menuItem.icon} color='green' size={23}/>
             <Text style={styles.itemText}>
-                {menuItem.name} -{menuItem.icon}</Text>
+                {menuItem.name}</Text>
             <View style={{flex:1}}></View>
             <Icon name='chevron-forward-outline' color='green' size={23}/>  
         </View>
