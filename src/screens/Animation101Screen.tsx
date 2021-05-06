@@ -1,5 +1,5 @@
 import React, { useRef } from 'react'
-import { Animated, StyleSheet, View } from 'react-native';
+import { Animated, Button, StyleSheet, View } from 'react-native';
 
 export const Animation101Screen = () => {
     
@@ -9,13 +9,42 @@ export const Animation101Screen = () => {
      * El current es propio del useRef
      */
     const opacity = useRef(new Animated.Value(0.4)).current
-    
+    /**Definimos la funcoón para la animación llamado FadeIn */
+    const fadeIn=()=>{
+        //Se puede animar con varios métodos
+        Animated.timing(opacity,{
+            toValue:1,
+            duration:300,
+            useNativeDriver:true
+        }).start(
+            //Callback que se llama cuando la aniamación termina
+            ()=>{console.log('Terminó animación')} 
+        );
+    }
+    /**Definimos la funcoón para la animación llamado FadeOut */
+    const fadeOut=()=>{
+        //Se puede animar con varios métodos
+        Animated.timing(opacity,{
+            toValue:0,
+            duration:300,
+            //Aceleración por hardware
+            useNativeDriver:true
+        }).start();
+    }
     return (
         <View style={styles.container}>
             {/**Si se quiere utilizar una propiedad animada
              * se debe utilizar el Animated.Element
              */}
-            <Animated.View style={{...styles.purpleBox, opacity:opacity}}></Animated.View>
+            <Animated.View style={{...styles.purpleBox, opacity:opacity, marginBottom:20}}></Animated.View>
+            <Button
+                title='FadeIn'
+                onPress={()=>fadeIn()}
+            />
+            <Button
+                title='FadeOut'
+                onPress={()=>fadeOut()}
+            />
         </View>
     )
 }
