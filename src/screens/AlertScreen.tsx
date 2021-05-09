@@ -26,6 +26,7 @@ export const AlertScreen = () => {
                 * clic fuera del alert
                 */
                cancelable:true,
+               //Accion cuando el clic es afiera
                onDismiss:()=>{console.log('On dismiss')}
            }
        ) ;
