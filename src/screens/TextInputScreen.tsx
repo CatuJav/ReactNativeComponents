@@ -1,23 +1,20 @@
 import React, { useState } from 'react'
-import { StyleSheet, TextInput, View, KeyboardAvoidingView, Platform, ScrollView, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import { StyleSheet, TextInput, View, KeyboardAvoidingView, Platform, ScrollView, TouchableWithoutFeedback, Keyboard, Text } from 'react-native';
 import { HeaderTitle } from '../components/HeaderTitle';
 import { styles } from '../theme/appTheme';
+import { useForm } from '../hooks/useForm';
+import { CustomSwitch } from '../components/CustomSwitch';
 
 export const TextInputScreen = () => {
 
-    const [form, setForm] = useState({
+    const {form,onChange, isSuscribed}=useForm({
         name:'',
         email:'',
-        phone:''
+        phone:'',
+        isSuscribed:false
     })
 
-    /** */
-    const onChange =(value:string, field:string)=>{
-        setForm({
-            ...form,
-            [field]:value
-        })
-    }
+
 
     return (
         //Para que cuando clic afuera el teclado se cierre
@@ -49,6 +46,11 @@ export const TextInputScreen = () => {
                     keyboardType='email-address'
                 />
 
+            <View style={stylesScreen.switchRow}>
+                <Text style={stylesScreen.switchText}>Suscribirse</Text>
+                <CustomSwitch isOn={isSuscribed} onChange={(value)=>{onChange(value,'isSuscribed')}}/>
+            </View>
+
                 <HeaderTitle title={JSON.stringify(form,null,3)}/>
                 <HeaderTitle title={JSON.stringify(form,null,3)}/>
                 
@@ -75,5 +77,14 @@ const stylesScreen = StyleSheet.create({
         borderRadius:10,
         borderColor:'rgba(0,0,0,0.3)',
         marginVertical:10,
-    }
+    },
+    switchRow:{
+        flexDirection:'row',
+        justifyContent:'space-between',
+        alignItems:'center',
+        marginVertical:10,
+    },
+    switchText:{
+        fontSize:25
+    },
 });
