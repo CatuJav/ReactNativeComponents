@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
-import { ActivityIndicator, Animated, View } from 'react-native';
+import { ActivityIndicator, Animated, ImageStyle, StyleProp, View } from 'react-native';
 import { useAnimation } from '../hooks/useAnimation'
 
 
 interface Props{
-    uri:string
+    uri:string;
+    style?:StyleProp<ImageStyle>;
 }
-export const FadeInImage = ({uri}:Props) => {
+export const FadeInImage = ({uri,style={}}:Props) => {
     const {fadeIn,opacity}=useAnimation();
     //Para mantender el estados de cuando estoy cargando una imangen o no
     const [isLoading, setisLoading] = useState(true)
@@ -38,11 +39,17 @@ export const FadeInImage = ({uri}:Props) => {
             onLoadEnd={()=>{
                 finishLoading()
             }}
+
             style={{
-                width:'100%',
-                height:400,
+                //Para decir que confie que recibe un objeto
+                ...style as any, 
                 opacity
             }}
+            // style={{
+            //     width:'100%',
+            //     height:400,
+            //     opacity
+            // }}
         />
        </View>
     )
