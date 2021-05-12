@@ -20,7 +20,7 @@ export const useAnimation = () => {
                 useNativeDriver:true
             }).start(
                 //Callback que se llama cuando la aniamación termina
-                ()=>{console.log('Terminó animación')} 
+                //()=>{console.log('Terminó animación')} 
             );
     
            
