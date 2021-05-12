@@ -28,11 +28,27 @@ export const ModalScreen = () => {
                    // height:100,
                     // width:100,
                     /**Efecto visual que nos permite ver el fondo */
-                    backgroundColor:'rgba(0,0,0,0.3)'}}>
+                    backgroundColor:'rgba(0,0,0,0.3)',
+                    justifyContent:'center',
+                    alignItems:'center',
+                    }}>
                         {/**Contenido del modal */}
-                        <View style={{backgroundColor:'white'}}>
-                        <HeaderTitle title='Modal'/>
-                        <Text>Cuerpo del modal</Text>
+                        <View style={{
+                            backgroundColor:'white',
+                            width:200,
+                            height:200,
+                            justifyContent:'center',
+                            alignItems:'center',
+                            shadowOffset:{
+                                width:0,
+                                height:10
+                            },
+                            shadowOpacity:0.5,
+                            elevation:10,
+                            borderRadius:20,
+                            }}>
+                        <Text style={{fontSize:20, fontWeight:'bold'}}>Modal</Text>
+                        <Text style={{fontSize:16, fontWeight:'300', marginBottom:20}}>Cuerpo del modal</Text>
                         <Button
                             title='Cerrar modal'
                             onPress={()=>{
