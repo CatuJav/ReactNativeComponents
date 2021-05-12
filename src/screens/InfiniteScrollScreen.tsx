@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { FlatList, View, Text, StyleSheet } from 'react-native';
+import { FlatList, View, Text, StyleSheet, Image, ActivityIndicator } from 'react-native';
 import { HeaderTitle } from '../components/HeaderTitle';
 
 export const InfiniteScrollScreen = () => {
@@ -12,14 +12,23 @@ export const InfiniteScrollScreen = () => {
             
         }
 
-        setNumbers([...numbers, ...newArray]);
+        setTimeout(() => {
+            setNumbers([...numbers, ...newArray]);
+        }, 1500);
     }
 
     const renderItem=(item:number)=>{
-        return <Text style={styles.textItem}>
-            {item}
-        </Text>
-    }
+        return(
+            <Image
+                source={{
+                    uri:`https://picsum.photos/id/${item}/500/400`,
+                }}
+                style={{
+                    width:'100%',
+                    height:400,
+                }}
+            />
+        )}
 
 
     return (
@@ -34,6 +43,17 @@ export const InfiniteScrollScreen = () => {
             onEndReached={()=>{loadMore()}}
             //Indica ya cuanto falta para llegar al fondo
             onEndReachedThreshold={0.5}
+            //Para indicar que se esta haciendo algo
+            ListFooterComponent={()=>(
+                <View style={{
+                    height:150,
+                    justifyContent:'center',
+                    alignItems:'center',
+                    width:'100%'
+                }}>
+                   <ActivityIndicator size={25} color='#5856D6'/>
+                </View>
+            )}
           />
         </View>
     )
