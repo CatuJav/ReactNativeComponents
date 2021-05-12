@@ -1,11 +1,34 @@
 import React, { useState } from 'react'
-import { Button, Modal, Text, View } from 'react-native';
+import { Button, Modal, Share, Text, ToastAndroid, View } from 'react-native';
 import { HeaderTitle } from '../components/HeaderTitle';
 import { styles } from '../theme/appTheme';
 
 export const ModalScreen = () => {
     const [isVisble, setIsVisble] = useState(false);
 
+    const onShare = async () => {
+        try {
+          const result = await Share.share({
+            message:
+              'React Native | A framework for building native apps using React',
+          });
+          if (result.action === Share.sharedAction) {
+            if (result.activityType) {
+              // shared with activity type of result.activityType
+            } else {
+              // shared
+            }
+          } else if (result.action === Share.dismissedAction) {
+            // dismissed
+          }
+        } catch (error) {
+            ToastAndroid.show(error.message, ToastAndroid.SHORT);
+        }
+      };
+
+      const showToast = () => {
+        ToastAndroid.show("A pikachu appeared nearby !", ToastAndroid.SHORT);
+      };
     return (
         <View   style={styles.globalMargin}>
             <HeaderTitle title='Modal Screen'/>
@@ -52,6 +75,22 @@ export const ModalScreen = () => {
                         <Button
                             title='Cerrar modal'
                             onPress={()=>{
+                                setIsVisble(false)
+                            }}
+                        />
+                        <View style={{height:10}}></View>
+                        <Button
+                            title='Compartir'
+                            onPress={()=>{
+                                onShare()
+                                setIsVisble(false)
+                            }}
+                        />
+                         <View style={{height:10}}></View>
+                        <Button
+                            title='Toast'
+                            onPress={()=>{
+                                showToast()
                                 setIsVisble(false)
                             }}
                         />
