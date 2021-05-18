@@ -1,10 +1,13 @@
-import React, { useState } from 'react'
-import { ImageSourcePropType, SafeAreaView, View, Text, Dimensions, Image, StyleSheet } from 'react-native';
+import { StackScreenProps } from '@react-navigation/stack';
+import React, { useRef, useState } from 'react'
+import { ImageSourcePropType, SafeAreaView, View, Text, Dimensions, Image, StyleSheet, TouchableOpacity, Animated } from 'react-native';
 
 import Carousel, {Pagination} from 'react-native-snap-carousel';
+import Icon from 'react-native-vector-icons/Ionicons';
+import { useAnimation } from '../hooks/useAnimation';
 
 
-const {height:screenHeight,width:screenWidth}=Dimensions.get('window')
+const {width:screenWidth}=Dimensions.get('window')
 interface Slide {
     title: string;
     desc: string;
@@ -29,9 +32,14 @@ const items: Slide[] = [
     },
 ]
 
-export const SlidesScreen = () => {
+interface Props extends StackScreenProps<any,any>{}
+
+export const SlidesScreen = ({navigation}:Props) => {
 
     const [activeIndex, setActiveIndex] = useState(0);
+    const {fadeIn,opacity}=useAnimation();
+    const isVisble = useRef(false);
+
     const renderItem=(items:Slide)=>{
         return (<View style={{
                         flex:1,
@@ -70,8 +78,18 @@ export const SlidesScreen = () => {
               //Para obtener el index del elemento
               onSnapToItem={(index)=>{
                 setActiveIndex(index);
+                if (index==items.length-1) {
+                    isVisble.current=true;
+                    fadeIn();
+                }
               }}
             />
+            <View style={{
+                flexDirection:'row',
+                justifyContent:'space-between',
+                marginHorizontal:20,
+                alignItems:'center'
+            }}>
             <Pagination
                 dotsLength={items.length}
                 activeDotIndex={activeIndex}
@@ -83,6 +101,37 @@ export const SlidesScreen = () => {
                     backgroundColor:'#5856D6'
                 }}
             />
+
+          
+                <Animated.View style={{opacity}}>
+                <TouchableOpacity style={{
+                    flexDirection:'row',
+                    backgroundColor:'#5856d6',
+                    width:140,
+                    height:50,
+                    borderRadius:10,
+                    alignItems:'center',
+                    justifyContent:'center'
+                }}
+                activeOpacity={0.8}
+                onPress={()=>{
+                    if (isVisble.current) {
+                        navigation.navigate('HomeScreen')
+                    }
+                }}
+                >
+                    <Text style={{
+                        fontSize:25,
+                        color:'white'
+                    }}>Entrar</Text>
+                    <Icon name='chevron-forward-outline'
+                          color='white'
+                          size={30}
+                    />
+                </TouchableOpacity>
+                </Animated.View>
+
+            </View>
         </SafeAreaView>
     )
 }
