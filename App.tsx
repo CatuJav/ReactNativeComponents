@@ -8,7 +8,7 @@ import { Navigator } from './src/navigator/Navigator';
 const customTheme: Theme={
   dark:true,
   colors:{
-    ...DarkTheme.colors,
+    ...DefaultTheme.colors,
     //primary: 'rgb(255, 45, 85)',
     //background: 'black',
     //card: 'rgb(255, 255, 255)',
