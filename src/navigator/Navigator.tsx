@@ -20,7 +20,7 @@ export const Navigator=()=> {
             headerShown:false,
             cardStyle:{
               //Para el fondo de las paginas 
-              backgroundColor:'white'
+              //backgroundColor:'white'
             }
         }}
     >
