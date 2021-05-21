@@ -1,8 +1,12 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Text, TouchableOpacity, View } from 'react-native';
 import { HeaderTitle } from '../components/HeaderTitle';
+import { ThemeContext } from '../context/themeContext/ThemeContext';
 
 export const ChangeThemeScreen = () => {
+
+    const {setDarkTheme} = useContext(ThemeContext)
+
     return (
         <View>
            <HeaderTitle title='Theme'/> 
@@ -17,7 +21,9 @@ export const ChangeThemeScreen = () => {
                justifyContent:'center',
                alignItems:'center'
                
-           }}>
+           }}
+           onPress={setDarkTheme}
+           >
                <Text style={{
                    color:'white',
                    textAlign:'center',
