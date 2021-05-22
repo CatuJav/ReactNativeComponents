@@ -5,16 +5,36 @@ import { ThemeContext } from '../context/themeContext/ThemeContext';
 
 export const ChangeThemeScreen = () => {
 
-    const {setDarkTheme} = useContext(ThemeContext)
+    const {setDarkTheme, setLightTheme,theme:{colors}} = useContext(ThemeContext)
 
     return (
         <View>
            <HeaderTitle title='Theme'/> 
+            <View style={{flexDirection:'row',justifyContent:'space-around'}}>
+           <TouchableOpacity 
+            activeOpacity={0.8}
+            style={{
+               backgroundColor:colors.primary,
+               width:150,
+               height:50,
+               borderRadius:20,
+               justifyContent:'center',
+               alignItems:'center'
+               
+           }}
+           onPress={setLightTheme}
+           >
+               <Text style={{
+                   color:'white',
+                   textAlign:'center',
+                   fontSize:20
+               }}>Light</Text>
+           </TouchableOpacity>
 
            <TouchableOpacity 
             activeOpacity={0.8}
             style={{
-               backgroundColor:'#5856D6',
+               backgroundColor:colors.primary,
                width:150,
                height:50,
                borderRadius:20,
@@ -28,8 +48,9 @@ export const ChangeThemeScreen = () => {
                    color:'white',
                    textAlign:'center',
                    fontSize:20
-               }}>Light / Dark</Text>
+               }}>Dark</Text>
            </TouchableOpacity>
+           </View>
         </View>
     )
 }
