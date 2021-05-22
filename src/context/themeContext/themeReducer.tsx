@@ -3,7 +3,7 @@ import { Theme } from "@react-navigation/native"
 //La accion que tipo es.
 type ThemeAction=
     | {type:'set_light_theme'}
-    | {type:'set_light_theme'}
+    | {type:'set_dark_theme'}
 
 //Como luce el state
 export interface ThemeState extends Theme{
@@ -12,13 +12,13 @@ export interface ThemeState extends Theme{
 }
 
 
-const lightTheme: ThemeState={
+export const lightTheme: ThemeState={
     currentTheme:'light',
     dark:false,
     dividerColor:'rgba(0,0,0,0.7)',
     colors:{
         primary: 'red',
-        background: 'blue',
+        background: 'white',
         card: 'green',
         text: 'pink',
         border: 'orange',
