@@ -1,9 +1,10 @@
 import { StackScreenProps } from '@react-navigation/stack';
-import React, { useRef, useState } from 'react'
+import React, { useContext, useRef, useState } from 'react'
 import { ImageSourcePropType, SafeAreaView, View, Text, Dimensions, Image, StyleSheet, TouchableOpacity, Animated } from 'react-native';
 
 import Carousel, {Pagination} from 'react-native-snap-carousel';
 import Icon from 'react-native-vector-icons/Ionicons';
+import { ThemeContext } from '../context/themeContext/ThemeContext';
 import { useAnimation } from '../hooks/useAnimation';
 
 
@@ -36,6 +37,9 @@ interface Props extends StackScreenProps<any,any>{}
 
 export const SlidesScreen = ({navigation}:Props) => {
 
+    const {theme:{colors,dividerColor}} = useContext(ThemeContext)
+
+
     const [activeIndex, setActiveIndex] = useState(0);
     const {fadeIn,opacity}=useAnimation();
     const isVisble = useRef(false);
@@ -43,7 +47,7 @@ export const SlidesScreen = ({navigation}:Props) => {
     const renderItem=(items:Slide)=>{
         return (<View style={{
                         flex:1,
-                        backgroundColor:'white',
+                        backgroundColor: colors.background,
                         borderRadius:5,
                         padding:40,
                         justifyContent:'center'
@@ -56,8 +60,12 @@ export const SlidesScreen = ({navigation}:Props) => {
                     resizeMode:'center'
                 }}
             />
-            <Text style={styles.title}>{items.title}</Text>
-            <Text style={styles.subtitle}>{items.desc}</Text>
+            <Text style={{...styles.title,
+                            color:colors.text
+                        }}>{items.title}</Text>
+            <Text style={{...styles.subtitle,
+                            color:colors.text
+                        }}>{items.desc}</Text>
         </View>)
     }
 
@@ -98,7 +106,7 @@ export const SlidesScreen = ({navigation}:Props) => {
                     width:10,
                     height:10,
                     borderRadius:10,
-                    backgroundColor:'#5856D6'
+                    backgroundColor:colors.primary
                 }}
             />
 
@@ -106,7 +114,7 @@ export const SlidesScreen = ({navigation}:Props) => {
                 <Animated.View style={{opacity}}>
                 <TouchableOpacity style={{
                     flexDirection:'row',
-                    backgroundColor:'#5856d6',
+                    backgroundColor:colors.primary,
                     width:140,
                     height:50,
                     borderRadius:10,

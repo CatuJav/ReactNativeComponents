@@ -1,10 +1,15 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { ScrollView, View, RefreshControl } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { HeaderTitle } from '../components/HeaderTitle'
+import { ThemeContext } from '../context/themeContext/ThemeContext';
 import { styles } from '../theme/appTheme';
 
 export const PullToRefreshScreen = () => {
+
+    const {theme:{colors,dividerColor}} = useContext(ThemeContext)
+
+
     const {top}=useSafeAreaInsets();
 
     const [refresing, setRefresing] = useState(false);
@@ -28,8 +33,8 @@ export const PullToRefreshScreen = () => {
                     onRefresh={()=>{onRefresh()}}
                     //Para indicar que tan alejado del top se muestra
                     progressViewOffset={10}
-                    progressBackgroundColor='#5856D6'
-                    colors={['blue','green','white']}
+                    progressBackgroundColor={colors.text}
+                    colors={['blue','green','orange']}
                     
                 />
             }

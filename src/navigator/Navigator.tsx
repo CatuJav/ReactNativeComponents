@@ -14,6 +14,7 @@ import { SlidesScreen } from '../screens/SlidesScreen';
 import { ChangeThemeScreen } from '../screens/ChangeThemeScreen';
 import { NavigationContainer } from '@react-navigation/native';
 import { ThemeContext } from '../context/themeContext/ThemeContext';
+import { View } from 'react-native';
 const Stack = createStackNavigator();
 
 export const Navigator=()=> {
@@ -21,7 +22,13 @@ export const Navigator=()=> {
   const { theme} = useContext(ThemeContext);
 
   return (
-    /**Aqui se va a manejar el theme desde el navigation*/
+    //Para arreglar el fondo blanco al momento de la trasicion en el modo dark
+    <View
+      style={{
+          backgroundColor:theme.colors.background, flex:1
+      }}
+    >
+    {/* Aqui se va a manejar el theme desde el navigation */}
     <NavigationContainer
     //Solo se aplica en la parte de la navegación
       theme={theme}
@@ -51,5 +58,6 @@ export const Navigator=()=> {
         
       </Stack.Navigator>
     </NavigationContainer>
+    </View>
   );
 }

@@ -1,19 +1,21 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { StyleSheet, TextInput, View, KeyboardAvoidingView, Platform, ScrollView, TouchableWithoutFeedback, Keyboard, Text } from 'react-native';
 import { HeaderTitle } from '../components/HeaderTitle';
 import { styles } from '../theme/appTheme';
 import { useForm } from '../hooks/useForm';
 import { CustomSwitch } from '../components/CustomSwitch';
+import { ThemeContext } from '../context/themeContext/ThemeContext';
 
 export const TextInputScreen = () => {
-
+    
     const {form,onChange, isSuscribed}=useForm({
         name:'',
         email:'',
         phone:'',
         isSuscribed:false
     })
-
+    
+    const {theme:{colors,dividerColor}} = useContext(ThemeContext)
 
 
     return (
@@ -27,8 +29,12 @@ export const TextInputScreen = () => {
                 <HeaderTitle title='TextInputs'/>
 
                 <TextInput
-                    style={stylesScreen.inputStyle}
+                    style={{...stylesScreen.inputStyle,
+                        borderColor:colors.text,   
+                        color:colors.text       
+                    }}
                     placeholder='Ingrese su nombre'
+                    placeholderTextColor={dividerColor}
                     /**Para desactivar el autocorrector */
                     autoCorrect={false}
                     autoCapitalize='words'
@@ -37,8 +43,12 @@ export const TextInputScreen = () => {
                     onChangeText={(value)=>onChange(value,'name')}
                 />
                 <TextInput
-                    style={stylesScreen.inputStyle}
+                     style={{...stylesScreen.inputStyle,
+                        borderColor:colors.text,   
+                        color:colors.text       
+                    }}
                     placeholder='Ingrese su email'
+                    placeholderTextColor={dividerColor}
                     autoCorrect={false}
                     autoCapitalize='none'
                     onChangeText={(value)=>onChange(value,'email')}
@@ -55,8 +65,12 @@ export const TextInputScreen = () => {
                 <HeaderTitle title={JSON.stringify(form,null,3)}/>
                 
                 <TextInput
-                    style={stylesScreen.inputStyle}
+                    style={{...stylesScreen.inputStyle,
+                        borderColor:colors.text,   
+                        color:colors.text       
+                    }}
                     placeholder='Ingrese su teléfono'
+                    placeholderTextColor={dividerColor}
                     onChangeText={(value)=>onChange(value,'phone')}
                     keyboardType='phone-pad'
                 />
@@ -75,7 +89,7 @@ const stylesScreen = StyleSheet.create({
         height:50,
         paddingHorizontal:10,
         borderRadius:10,
-        borderColor:'rgba(0,0,0,0.3)',
+       
         marginVertical:10,
     },
     switchRow:{

@@ -1,5 +1,7 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { ActivityIndicator, Animated, ImageStyle, StyleProp, View } from 'react-native';
+import { color } from 'react-native-reanimated';
+import { ThemeContext } from '../context/themeContext/ThemeContext';
 import { useAnimation } from '../hooks/useAnimation'
 
 
@@ -8,6 +10,10 @@ interface Props{
     style?:StyleProp<ImageStyle>;
 }
 export const FadeInImage = ({uri,style={}}:Props) => {
+
+    const {theme:{colors,dividerColor}} = useContext(ThemeContext)
+
+
     const {fadeIn,opacity}=useAnimation();
     //Para mantender el estados de cuando estoy cargando una imangen o no
     const [isLoading, setisLoading] = useState(true)
@@ -28,7 +34,7 @@ export const FadeInImage = ({uri,style={}}:Props) => {
                 * además sirve para mostrar cuando no se carga la imagen
                */
                isLoading&&
-               <ActivityIndicator style={{position:'absolute'}} color='#5856D6' size={30}/>
+               <ActivityIndicator style={{position:'absolute'}} color={colors.primary} size={30}/>
            }
         {/* //Usar Animated de react-native */}
         <Animated.Image
